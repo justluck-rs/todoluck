@@ -1,0 +1,3 @@
+Este é um arquivo de texto para criar a pasta sounds. 
+O som de notificação será carregado de uma URL externa para simplificar o exemplo.
+Em um ambiente de produção, você deve hospedar seus próprios arquivos de áudio.
