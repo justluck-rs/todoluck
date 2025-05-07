@@ -14,7 +14,6 @@ interface TaskProps {
 export function TaskItem({ task, onToggle, onRemove }: TaskProps) {
   const [animate, setAnimate] = useState(false);
 
-  // Efeito para animação quando a tarefa for concluída
   useEffect(() => {
     if (task.completed) {
       setAnimate(true);
@@ -23,7 +22,6 @@ export function TaskItem({ task, onToggle, onRemove }: TaskProps) {
     }
   }, [task.completed]);
 
-  // Formatar a data de criação
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: '2-digit',
@@ -35,7 +33,6 @@ export function TaskItem({ task, onToggle, onRemove }: TaskProps) {
     return new Date(dateString).toLocaleDateString('pt-BR', options);
   };
 
-  // Calcular tempo relativo (ex: "há 2 horas")
   const getRelativeTime = (dateString: string) => {
     const now = new Date();
     const taskDate = new Date(dateString);

@@ -14,10 +14,9 @@ function App() {
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
   const [error, setError] = useState('');
-  const [filter, setFilter] = useState('all'); // 'all', 'active', 'completed'
+  const [filter, setFilter] = useState('all');
   const [showPomodoro, setShowPomodoro] = useState(false);
 
-  // Salvar tarefas no localStorage sempre que mudar
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
@@ -58,7 +57,7 @@ function App() {
     setTasks(tasks.filter(task => !task.completed));
   };
 
-  // Lidar com tecla Enter no input
+  // Adicionar com o Enter
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleAddTask();
@@ -83,7 +82,7 @@ function App() {
   const activeTasks = totalTasks - completedTasks;
 
   return (
-    <div className="max-w-xl mx-auto bg-gradient-to-br from-indigo-600 to-purple-600 min-h-[calc(100vh-4rem)] mt-8 rounded-xl shadow-xl p-6 transition-all duration-300 border border-white/10">
+    <div className="max-w-xl mx-auto  min-h-[calc(100vh-4rem)] mt-8">
       <Header />
 
       {/* Botão Pomodoro */}

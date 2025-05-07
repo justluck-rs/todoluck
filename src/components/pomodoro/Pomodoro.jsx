@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Configurações padrão do Pomodoro
 const DEFAULT_WORK_TIME = 25 * 60; // 25 minutos em segundos
 const DEFAULT_SHORT_BREAK = 5 * 60; // 5 minutos em segundos
 const DEFAULT_LONG_BREAK = 15 * 60; // 15 minutos em segundos
 const DEFAULT_CYCLES_BEFORE_LONG_BREAK = 4;
 
 export function Pomodoro() {
-  // Carregar configurações do localStorage ou usar valores padrão
   const loadSavedSettings = () => {
     try {
       const savedSettings = localStorage.getItem('pomodoroSettings');
@@ -28,23 +26,19 @@ export function Pomodoro() {
 
   const savedSettings = loadSavedSettings();
 
-  // Estados para controlar o temporizador
   const [timeLeft, setTimeLeft] = useState(savedSettings.workTime);
   const [isActive, setIsActive] = useState(false);
-  const [mode, setMode] = useState('work'); // 'work', 'shortBreak', 'longBreak'
+  const [mode, setMode] = useState('work');
   const [cycles, setCycles] = useState(0);
   const [totalCompletedCycles, setTotalCompletedCycles] = useState(savedSettings.totalCompletedCycles);
 
-  // Estados para configurações personalizadas
   const [workTime, setWorkTime] = useState(savedSettings.workTime);
   const [shortBreakTime, setShortBreakTime] = useState(savedSettings.shortBreakTime);
   const [longBreakTime, setLongBreakTime] = useState(savedSettings.longBreakTime);
   const [showSettings, setShowSettings] = useState(false);
 
-  // Referência para o áudio de notificação
   const audioRef = useRef(null);
 
-  // Efeito para gerenciar o temporizador
   useEffect(() => {
     let interval = null;
 
@@ -53,7 +47,6 @@ export function Pomodoro() {
         setTimeLeft(timeLeft => timeLeft - 1);
       }, 1000);
     } else if (isActive && timeLeft === 0) {
-      // Quando o temporizador chega a zero
       playNotificationSound();
       showBrowserNotification();
       handleTimerComplete();
@@ -65,7 +58,6 @@ export function Pomodoro() {
     return () => clearInterval(interval);
   }, [isActive, timeLeft]);
 
-  // Função para tocar o som de notificação
   const playNotificationSound = () => {
     if (audioRef.current) {
       audioRef.current.play().catch(error => {
@@ -74,7 +66,6 @@ export function Pomodoro() {
     }
   };
 
-  // Função para mostrar notificação do navegador
   const showBrowserNotification = () => {
     if ('Notification' in window && Notification.permission === 'granted') {
       const title = mode === 'work'
@@ -91,14 +82,11 @@ export function Pomodoro() {
     }
   };
 
-  // Função para lidar com a conclusão do temporizador
   const handleTimerComplete = () => {
     if (mode === 'work') {
-      // Incrementar o contador de ciclos
       const newCycles = cycles + 1;
       setCycles(newCycles);
 
-      // Verificar se é hora de uma pausa longa
       if (newCycles % DEFAULT_CYCLES_BEFORE_LONG_BREAK === 0) {
         setMode('longBreak');
         setTimeLeft(longBreakTime);
@@ -107,21 +95,17 @@ export function Pomodoro() {
         setTimeLeft(shortBreakTime);
       }
     } else {
-      // Após uma pausa, voltar ao modo de trabalho
       setMode('work');
       setTimeLeft(workTime);
 
-      // Se estávamos em uma pausa longa, incrementar o contador total de ciclos
       if (mode === 'longBreak') {
         setTotalCompletedCycles(prev => prev + 1);
       }
     }
 
-    // Pausar o temporizador após a transição
     setIsActive(false);
   };
 
-  // Funções para controlar o temporizador
   const toggleTimer = () => {
     setIsActive(!isActive);
   };
@@ -129,7 +113,6 @@ export function Pomodoro() {
   const resetTimer = () => {
     setIsActive(false);
 
-    // Resetar para o modo atual
     if (mode === 'work') {
       setTimeLeft(workTime);
     } else if (mode === 'shortBreak') {
@@ -139,7 +122,6 @@ export function Pomodoro() {
     }
   };
 
-  // Função para mudar manualmente o modo
   const changeMode = (newMode) => {
     setIsActive(false);
     setMode(newMode);
@@ -153,7 +135,6 @@ export function Pomodoro() {
     }
   };
 
-  // Efeito para salvar configurações no localStorage quando mudarem
   useEffect(() => {
     const settings = {
       workTime,
@@ -165,12 +146,10 @@ export function Pomodoro() {
     localStorage.setItem('pomodoroSettings', JSON.stringify(settings));
   }, [workTime, shortBreakTime, longBreakTime, totalCompletedCycles]);
 
-  // Função para salvar configurações personalizadas
   const saveSettings = (e) => {
     e.preventDefault();
     setShowSettings(false);
 
-    // Se estamos no modo de trabalho, atualizar o tempo restante
     if (mode === 'work') {
       setTimeLeft(workTime);
     } else if (mode === 'shortBreak') {
@@ -180,14 +159,12 @@ export function Pomodoro() {
     }
   };
 
-  // Função para formatar o tempo em minutos e segundos
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Função para converter minutos em segundos
   const minutesToSeconds = (minutes) => {
     return Math.max(1, Math.floor(parseFloat(minutes) * 60));
   };

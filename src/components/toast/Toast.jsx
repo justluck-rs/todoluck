@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 /**
- * Componente Toast para exibir notificações
  * @param {Object} props - Propriedades do componente
  * @param {string} props.message - Mensagem a ser exibida
  * @param {string} props.type - Tipo de notificação ('success', 'error', 'info', 'warning')
@@ -9,7 +8,6 @@ import React, { useEffect } from 'react';
  * @param {Function} props.onClose - Função chamada ao fechar o toast
  */
 export function Toast({ message, type = 'info', duration = 3000, onClose }) {
-  // Efeito para fechar o toast após a duração especificada
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -18,7 +16,6 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }) {
     return () => clearTimeout(timer);
   }, [duration, onClose]);
 
-  // Definir ícone com base no tipo
   const getIcon = () => {
     switch (type) {
       case 'success':
@@ -48,7 +45,6 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }) {
     }
   };
 
-  // Definir classes com base no tipo
   const getClasses = () => {
     const baseClasses = "fixed bottom-4 right-4 flex items-start gap-3 p-4 rounded-lg shadow-lg backdrop-blur-sm border animate-fadeInUp z-50 max-w-xs";
     
