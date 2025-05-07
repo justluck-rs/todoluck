@@ -82,7 +82,7 @@ function App() {
   const activeTasks = totalTasks - completedTasks;
 
   return (
-    <div className="max-w-xl mx-auto  min-h-[calc(100vh-4rem)] mt-8">
+    <div className="max-w-xl mx-auto  min-h-[calc(100vh-4rem)] mt-8 px-4">
       <Header />
 
       {/* Botão Pomodoro */}
