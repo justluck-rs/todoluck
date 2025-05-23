@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background-dark-primary: #121212;
+  --color-background-dark-secondary: #1E1E1E;
+  --color-text-primary-light: #E0E0E0;
+  --color-accent-off-white: #F5F5F5;
+  --color-border-dark-subtle: #2C2C2C;
+
+  /* Mapping to Tailwind expected names */
+  --color-primary: #6366f1; /* Keeping original primary for now, can be changed if needed */
+  --color-secondary: #ec4899; /* Keeping original secondary for now */
+  --color-text: var(--color-text-primary-light);
+  --color-background: var(--color-background-dark-primary);
+}
+
 :root {
   --color-primary: #6366f1;
   --color-primary-dark: #4f46e5;
@@ -10,10 +24,10 @@
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-background: #f8fafc;
-  --color-card: rgba(255, 255, 255, 0.15);
-  --color-text: #f8fafc;
-  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-background: var(--color-background-dark-primary);
+  --color-card: var(--color-background-dark-secondary);
+  --color-text: var(--color-text-primary-light);
+  --color-text-muted: var(--color-text-primary-light / 0.7);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -25,13 +39,13 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-background-dark-primary);
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
 }
 
 /* Animações e transições globais */
@@ -45,25 +59,25 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-border-dark-subtle);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--color-text-primary-light / 0.3);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--color-text-primary-light / 0.5);
 }
 
 /* Estilos para checkbox personalizado */
 input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  background-color: var(--color-border-dark-subtle / 0.5);
+  border: 2px solid var(--color-border-dark-subtle);
   border-radius: 50%;
   cursor: pointer;
   display: inline-block;
@@ -81,7 +95,7 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:checked::after {
   content: '✓';
-  color: white;
+  color: var(--color-background-dark-primary);
   font-size: 14px;
   position: absolute;
   top: 50%;
