@@ -170,7 +170,7 @@ export function Pomodoro() {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-5 border border-white/10 shadow-lg transition-all duration-300">
+    <div className="bg-background-dark-secondary backdrop-blur-sm rounded-lg p-5 border border-border-dark-subtle shadow-lg transition-all duration-300">
       {/* Áudio para notificação */}
       <audio ref={audioRef} preload="auto">
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg" />
@@ -180,7 +180,7 @@ export function Pomodoro() {
 
       {/* Cabeçalho do Pomodoro */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-white flex items-center gap-2">
+        <h2 className="text-xl font-semibold text-text-primary-light flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-400" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
           </svg>
@@ -188,7 +188,7 @@ export function Pomodoro() {
         </h2>
         <button
           onClick={() => setShowSettings(!showSettings)}
-          className="text-white/70 hover:text-white transition-colors duration-300"
+          className="text-text-primary-light/70 hover:text-accent-off-white transition-colors duration-300"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
@@ -198,48 +198,48 @@ export function Pomodoro() {
 
       {/* Configurações */}
       {showSettings && (
-        <div className="mb-4 p-3 bg-white/5 rounded-lg">
-          <h3 className="text-white text-sm font-medium mb-2">Configurações</h3>
+        <div className="mb-4 p-3 bg-background-dark-primary rounded-lg">
+          <h3 className="text-text-primary-light text-sm font-medium mb-2">Configurações</h3>
           <form onSubmit={saveSettings} className="space-y-2">
             <div className="grid grid-cols-3 gap-2">
               <div>
-                <label className="block text-white/70 text-xs mb-1">Trabalho (min)</label>
+                <label className="block text-text-primary-light/70 text-xs mb-1">Trabalho (min)</label>
                 <input
                   type="number"
                   min="1"
                   max="60"
                   value={workTime / 60}
                   onChange={(e) => setWorkTime(minutesToSeconds(e.target.value))}
-                  className="w-full p-1 text-sm bg-white/20 border border-white/10 rounded text-white"
+                  className="w-full p-1 text-sm bg-border-dark-subtle border border-border-dark-subtle/50 rounded text-text-primary-light"
                 />
               </div>
               <div>
-                <label className="block text-white/70 text-xs mb-1">Pausa curta (min)</label>
+                <label className="block text-text-primary-light/70 text-xs mb-1">Pausa curta (min)</label>
                 <input
                   type="number"
                   min="1"
                   max="30"
                   value={shortBreakTime / 60}
                   onChange={(e) => setShortBreakTime(minutesToSeconds(e.target.value))}
-                  className="w-full p-1 text-sm bg-white/20 border border-white/10 rounded text-white"
+                  className="w-full p-1 text-sm bg-border-dark-subtle border border-border-dark-subtle/50 rounded text-text-primary-light"
                 />
               </div>
               <div>
-                <label className="block text-white/70 text-xs mb-1">Pausa longa (min)</label>
+                <label className="block text-text-primary-light/70 text-xs mb-1">Pausa longa (min)</label>
                 <input
                   type="number"
                   min="1"
                   max="60"
                   value={longBreakTime / 60}
                   onChange={(e) => setLongBreakTime(minutesToSeconds(e.target.value))}
-                  className="w-full p-1 text-sm bg-white/20 border border-white/10 rounded text-white"
+                  className="w-full p-1 text-sm bg-border-dark-subtle border border-border-dark-subtle/50 rounded text-text-primary-light"
                 />
               </div>
             </div>
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-white/20 hover:bg-white/30 text-white text-xs py-1 px-3 rounded transition-colors duration-300"
+                className="bg-border-dark-subtle hover:bg-background-dark-primary text-accent-off-white text-xs py-1 px-3 rounded transition-colors duration-300"
               >
                 Salvar
               </button>
@@ -250,10 +250,10 @@ export function Pomodoro() {
 
       {/* Seletor de modo */}
       <div className="flex justify-center mb-4">
-        <div className="bg-white/5 rounded-lg p-1 flex">
+        <div className="bg-background-dark-primary rounded-lg p-1 flex">
           <button
             className={`px-3 py-1 rounded text-sm font-medium transition-all duration-300 ${
-              mode === 'work' ? 'bg-red-500 text-white' : 'text-white/70 hover:bg-white/10'
+              mode === 'work' ? 'bg-red-500 text-accent-off-white' : 'text-text-primary-light/70 hover:bg-border-dark-subtle'
             }`}
             onClick={() => changeMode('work')}
           >
@@ -261,7 +261,7 @@ export function Pomodoro() {
           </button>
           <button
             className={`px-3 py-1 rounded text-sm font-medium transition-all duration-300 ${
-              mode === 'shortBreak' ? 'bg-green-500 text-white' : 'text-white/70 hover:bg-white/10'
+              mode === 'shortBreak' ? 'bg-green-500 text-accent-off-white' : 'text-text-primary-light/70 hover:bg-border-dark-subtle'
             }`}
             onClick={() => changeMode('shortBreak')}
           >
@@ -269,7 +269,7 @@ export function Pomodoro() {
           </button>
           <button
             className={`px-3 py-1 rounded text-sm font-medium transition-all duration-300 ${
-              mode === 'longBreak' ? 'bg-blue-500 text-white' : 'text-white/70 hover:bg-white/10'
+              mode === 'longBreak' ? 'bg-blue-500 text-accent-off-white' : 'text-text-primary-light/70 hover:bg-border-dark-subtle'
             }`}
             onClick={() => changeMode('longBreak')}
           >
@@ -291,7 +291,7 @@ export function Pomodoro() {
         <div className="flex justify-center gap-3">
           <button
             onClick={toggleTimer}
-            className="bg-white/20 hover:bg-white/30 text-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-1"
+            className="bg-border-dark-subtle hover:bg-background-dark-primary text-accent-off-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-1"
           >
             {isActive ? (
               <>
@@ -311,7 +311,7 @@ export function Pomodoro() {
           </button>
           <button
             onClick={resetTimer}
-            className="bg-white/10 hover:bg-white/20 text-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-1"
+            className="bg-background-dark-primary hover:bg-border-dark-subtle text-accent-off-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-1"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
@@ -322,7 +322,7 @@ export function Pomodoro() {
       </div>
 
       {/* Estatísticas */}
-      <div className="flex justify-between text-white/70 text-sm">
+      <div className="flex justify-between text-text-primary-light/70 text-sm">
         <div>Ciclo atual: {cycles % DEFAULT_CYCLES_BEFORE_LONG_BREAK || DEFAULT_CYCLES_BEFORE_LONG_BREAK}/{DEFAULT_CYCLES_BEFORE_LONG_BREAK}</div>
         <div>Total: {totalCompletedCycles} ciclos</div>
       </div>

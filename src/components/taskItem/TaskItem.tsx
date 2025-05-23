@@ -54,8 +54,8 @@ export function TaskItem({ task, onToggle, onRemove }: TaskProps) {
 
   return (
     <li
-      className={`bg-white/10 backdrop-blur-sm rounded-lg p-4 shadow-md transition-all duration-300
-                border border-white/10 hover:border-white/20
+      className={`bg-background-dark-secondary backdrop-blur-sm rounded-lg p-4 shadow-md transition-all duration-300
+                border border-border-dark-subtle hover:border-border-dark-subtle/70
                 ${task.completed ? 'border-l-4 border-green-400' : 'border-l-4 border-yellow-400'}
                 ${animate ? 'completed-task-animation' : ''}`}
     >
@@ -68,15 +68,15 @@ export function TaskItem({ task, onToggle, onRemove }: TaskProps) {
             className="cursor-pointer"
           />
           <div className="flex-1">
-            <p className={`text-white font-medium transition-all duration-300
-                         ${task.completed ? 'line-through text-white/60' : ''}`}>
+            <p className={`text-text-primary-light font-medium transition-all duration-300
+                         ${task.completed ? 'line-through text-text-primary-light/60' : ''}`}>
               {task.text}
             </p>
             <div className="flex items-center gap-2 mt-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white/50" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-text-primary-light/50" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
               </svg>
-              <p className="text-white/50 text-xs">
+              <p className="text-text-primary-light/50 text-xs">
                 {getRelativeTime(task.createdAt)}
               </p>
             </div>
@@ -84,7 +84,7 @@ export function TaskItem({ task, onToggle, onRemove }: TaskProps) {
         </div>
         <button
           onClick={() => onRemove(task.id)}
-          className="text-white/70 hover:text-pink-400 transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
+          className="text-text-primary-light/70 hover:text-pink-400 transition-colors duration-300 p-2 rounded-full hover:bg-border-dark-subtle"
           title="Remover tarefa"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

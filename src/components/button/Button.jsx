@@ -3,9 +3,9 @@ export function Button({ ...props }) {
   return (
     <button
       className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700
-                text-white font-medium py-3 px-6 rounded-lg shadow-md transform transition-all duration-300
+                text-accent-off-white font-medium py-3 px-6 rounded-lg shadow-md transform transition-all duration-300
                 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-400
-                border border-white/10 flex items-center gap-2"
+                border border-border-dark-subtle flex items-center gap-2"
       onClick={props.onClick}
     >
       <span className="relative">
